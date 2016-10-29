@@ -2,7 +2,11 @@ package jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import business.RProgram;
+import business.User;
 
 public class EntityManagerHelper {
 
@@ -10,7 +14,7 @@ public class EntityManagerHelper {
 	private static final ThreadLocal<EntityManager> threadLocal;
 
 	static {
-		emf = Persistence.createEntityManagerFactory("dev");
+		emf = Persistence.createEntityManagerFactory("mysql");
 		threadLocal = new ThreadLocal<EntityManager>();
 	}
 
@@ -18,6 +22,7 @@ public class EntityManagerHelper {
 		EntityManager em = threadLocal.get();
 
 		if (em == null) {
+			System.out.println("Creating New Entity");
 			em = emf.createEntityManager();
 			threadLocal.set(em);
 		}
@@ -46,5 +51,26 @@ public class EntityManagerHelper {
 
 	public static void commit() {
 		getEntityManager().getTransaction().commit();
+	}
+
+
+	public  static void addUser(User newUser){
+		EntityTransaction t = EntityManagerHelper.getEntityManager().getTransaction();
+		t.begin();
+		EntityManagerHelper.getEntityManager().persist(newUser);
+		t.commit();
+	}
+	public  static void addRprogram(RProgram newRprogram){
+		EntityTransaction t = EntityManagerHelper.getEntityManager().getTransaction();
+		t.begin();
+		EntityManagerHelper.getEntityManager().persist(newRprogram);
+		t.commit();
+	}
+	public static User findUserWithUserName(String name) {
+		return (User) EntityManagerHelper.getEntityManager().createQuery(
+				"SELECT user FROM User user WHERE user.username LIKE :custName")
+				.setParameter("custName", name)
+				.setMaxResults(1)
+				.getSingleResult();
 	}
 }

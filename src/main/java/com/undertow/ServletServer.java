@@ -14,6 +14,9 @@ import io.undertow.servlet.api.DeploymentManager;
 
 import java.io.File;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 
 public class ServletServer {
@@ -27,8 +30,11 @@ public class ServletServer {
 					.setContextPath(MYAPP).setDeploymentName("test.war")
 					.setResourceManager(new FileResourceManager(new File("src/main/webapp"), 1024))
 					.addServlets(
-					          servlet("rinterpreter", RInterpreter.class)
-                              .addMapping("/rservlet"),
+							servlet("subscribeServlet",SubscribeServlet.class).addMapping("/SubscribeServlet"),
+							servlet("rinterpreterServlet", RinterpretationServlet.class).addMapping("/RinterpretationServlet"),
+							servlet("loginServlet",LoginServlet.class).addMapping("/LoginServlet"),
+							servlet("loadRprogramServlet",LoadRprogamServlet.class).addMapping("/LoadRprogramServlet"),
+
 					 JspServletBuilder.createServlet("Default Jsp Servlet", "*.jsp")
 
 			);
@@ -38,6 +44,8 @@ public class ServletServer {
 
 			HttpHandler servletHandler = manager.start();
 			PathHandler path = Handlers.path(Handlers.redirect(MYAPP)).addPrefixPath(MYAPP, servletHandler);
+
+
 			Undertow server = Undertow.builder().addHttpListener(8080, "localhost").setHandler(path).build();
 			server.start();
 		} catch (ServletException e) {

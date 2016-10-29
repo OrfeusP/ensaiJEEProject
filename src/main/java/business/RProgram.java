@@ -10,44 +10,49 @@ public class RProgram {
 	@Id
 	@GeneratedValue
 	long id;
-	String name;
+
+	String filename;
 	
 	@Column(length=2000)
-	String result;
+	String programresult;
 	
 	String author;
-	String program;
+	String programcode;
 
 	
 	public String getResult() {
-		return result;
+		return programresult;
 	}
 	public void setResult(String result) {
-		this.result = result;
+		this.programresult = result;
 	}
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getName() {
-		return name;
+		return filename;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.filename = name;
 	}
+
 	public String getAuthor() {
 		return author;
 	}
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getProgram() {
-		return program;
+
+	public String getProgramCode() {
+		return programcode;
 	}
 	public void setProgram(String program) {
-		this.program = program;
+		this.programcode = program;
 	}
 	
 
