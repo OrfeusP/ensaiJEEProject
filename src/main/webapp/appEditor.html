@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>R.io</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="js/lib/codemirror.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container-fluid appEditor">
+    <div class="row header">
+        <div class="col-md-4 dummy">&nbsp;</div>
+        <div class="col-md-4 Logo"></div>
+        <div class="col-md-4 UserInfo">
+            <div class="welcome">
+                Welcome <span id="firstName">Orfeus</span>&nbsp;<span id="lastName">Papageourgiou</span>&nbsp;!
+            </div>
+            <div class="email">&nbsp;orpheusp@test.com&nbsp;</div>
+            <a class="logout">Logout</a>
+        </div>
+    </div>
+    <h1>Create / Edit your Program</h1>
+    <div class="field-wrap">
+        <label>
+            Program Name<span class="req">*</span>
+        </label>
+        <input id="programName" type="text" name="programName" required autocomplete="off"/>
+    </div>
+    <div id="code"></div>
+    <a class="save-button">SAVE</a>
+</div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
+<script src="js/lib/codemirror.js"></script>
+<script src="js/lib/mode/r/r.js"></script>
+<script type="text/javascript" src="js/appEditor/index.js"></script>
+</body>
+</html>

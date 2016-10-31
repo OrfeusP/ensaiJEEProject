@@ -8,6 +8,9 @@ import javax.persistence.Persistence;
 import business.RProgram;
 import business.User;
 
+import java.util.ArrayList;
+
+
 public class EntityManagerHelper {
 
 	private static final EntityManagerFactory emf;
@@ -72,5 +75,12 @@ public class EntityManagerHelper {
 				.setParameter("custName", name)
 				.setMaxResults(1)
 				.getSingleResult();
+	}
+	public static ArrayList<RProgram> findProgramsOfUser(String username){
+		return (ArrayList<RProgram>)EntityManagerHelper.getEntityManager().createQuery(
+				"SELECT program FROM RProgram program WHERE program.author LIKE :custName")
+				.setParameter("custName", username)
+				.setMaxResults(100)
+				.getResultList();
 	}
 }

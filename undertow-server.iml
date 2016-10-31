@@ -39,6 +39,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.json:json:20090211" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:jquery:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: io.undertow:undertow-jsp:1.0.0.Beta27" level="project" />
     <orderEntry type="library" name="Maven: io.undertow.jastow:jastow:1.0.0.Beta2" level="project" />

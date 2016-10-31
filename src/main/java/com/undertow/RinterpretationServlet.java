@@ -50,6 +50,7 @@ public class RinterpretationServlet extends HttpServlet {
                 Cookie cookie = cookies[i];
                 if (cookie.getName().equals("username")){
                     userName = cookie.getValue();
+                    break;
                 }
             }
             RProgram p = new RProgram();
@@ -58,7 +59,7 @@ public class RinterpretationServlet extends HttpServlet {
             p.setName(request.getParameter("filename"));
             p.setProgram(request.getParameter("Rprogram"));
             p.setResult(buffer.toString());
-
+            p.updateTimeStamps();
             System.out.println(p.getResult());
             EntityManagerHelper.addRprogram(p);
 

@@ -8,7 +8,12 @@
   <name>undertow-server</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-
+      <!-- https://mvnrepository.com/artifact/org.json/json -->
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20090211</version>
+      </dependency>
       <dependency>
           <groupId>org.webjars</groupId>
           <artifactId>jquery</artifactId>
@@ -91,6 +96,10 @@
   </dependencies>
 
   <repositories>
+      <repository>
+          <id>central</id>
+          <url>http://repo1.maven.org/maven2/</url>
+      </repository>
       <repository>
         <id>bedatadriven</id>
         <name>bedatadriven public repo</name>

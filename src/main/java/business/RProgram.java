@@ -1,9 +1,8 @@
 package business;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class RProgram {
@@ -18,6 +17,22 @@ public class RProgram {
 	
 	String author;
 	String programcode;
+
+	String lastModified;
+	String dateCreated;
+
+
+	@PreUpdate
+	@PrePersist
+	public void updateTimeStamps() {
+		SimpleDateFormat sdfr = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		lastModified = sdfr.format( new Date() );
+		if (dateCreated==null) {
+			dateCreated = sdfr.format(new Date());
+		}
+	}
+	public String getLastModified(){ return this.lastModified; }
+	public String getDateCreated(){ return this.dateCreated; }
 
 	
 	public String getResult() {
