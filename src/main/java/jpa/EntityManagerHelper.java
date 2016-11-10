@@ -58,17 +58,19 @@ public class EntityManagerHelper {
 
 
 	public  static void addUser(User newUser){
-		EntityTransaction t = EntityManagerHelper.getEntityManager().getTransaction();
-		t.begin();
+
+		beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(newUser);
-		t.commit();
+		commit();
 	}
+
 	public  static void addRprogram(RProgram newRprogram){
-		EntityTransaction t = EntityManagerHelper.getEntityManager().getTransaction();
-		t.begin();
+
+		beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(newRprogram);
-		t.commit();
+		commit();
 	}
+
 	public static User findUserWithUserName(String name) {
 		return (User) EntityManagerHelper.getEntityManager().createQuery(
 				"SELECT user FROM User user WHERE user.username LIKE :custName")
@@ -76,6 +78,7 @@ public class EntityManagerHelper {
 				.setMaxResults(1)
 				.getSingleResult();
 	}
+
 	public static ArrayList<RProgram> findProgramsOfUser(String username){
 		return (ArrayList<RProgram>)EntityManagerHelper.getEntityManager().createQuery(
 				"SELECT program FROM RProgram program WHERE program.author LIKE :custName")
@@ -83,4 +86,55 @@ public class EntityManagerHelper {
 				.setMaxResults(100)
 				.getResultList();
 	}
+	public  static void deleteProgramFromUser(int id){
+		EntityManager em = EntityManagerHelper.getEntityManager();
+		RProgram program = EntityManagerHelper.findProgramOfUser(id);
+
+		beginTransaction();
+		em.remove(program);
+		commit();
+		System.out.println("END");
+
+	}
+	public static RProgram findProgramOfUser(int id){
+
+		RProgram program = (RProgram) EntityManagerHelper.getEntityManager().createQuery(
+				"SELECT program FROM RProgram program WHERE program.id="+id)
+				.getSingleResult();
+		return program;
+	}
+	public static RProgram findProgramOfUserByFilename(String filename){
+		return (RProgram) EntityManagerHelper.getEntityManager().createQuery(
+				"SELECT program FROM RProgram program WHERE program.filename LIKE :custName")
+				.setParameter("custName", filename)
+				.getSingleResult();
+	}
+	public static void updateFilename(int id,String filename){
+
+		RProgram program = findProgramOfUser(id);
+		beginTransaction();
+		program.setName(filename);
+		commit();
+	}
+
+	public static void updateProgramcode(int id,String programCode){
+		RProgram program = findProgramOfUser(id);
+		beginTransaction();
+		program.setProgram(programCode);
+		commit();
+	}
+
+	public static void updateProgramresult(int id,String programResult ){
+		RProgram program = findProgramOfUser(id);
+		beginTransaction();
+		program.setResult(programResult);
+		commit();
+	}
+	public static void updateTimeStamps(int id){
+		RProgram program = findProgramOfUser(id);
+		beginTransaction();
+		program.updateTimeStamps();
+		commit();
+	}
+
 }

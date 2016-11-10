@@ -5,6 +5,7 @@ import business.User;
 
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,14 @@ public class SubscribeServlet extends HttpServlet {
             System.out.println(request.getParameter("username"));
             System.out.println(request.getParameter("password"));
 
+            Cookie userCookie = new Cookie("username",newUser.getUserName());
+            Cookie firstNameCookie = new Cookie("firstname",newUser.getFirstName());
+            Cookie lastNameCookie = new Cookie("lastname",newUser.getLastName());
+            Cookie emailCookie = new Cookie("email",newUser.getEmail());
+            response.addCookie(userCookie);
+            response.addCookie(firstNameCookie);
+            response.addCookie(lastNameCookie);
+            response.addCookie(emailCookie);
 
             EntityManagerHelper.addUser(newUser);
             request.getRequestDispatcher("index.html").forward(request,response);

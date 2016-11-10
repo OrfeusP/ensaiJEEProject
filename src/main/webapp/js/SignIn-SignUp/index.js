@@ -56,6 +56,9 @@ window.onload = function () {
                 username: $('input[name=usernameLogin]').val(),
                 password: $('input[name=passwordLogin]').val()
             })
+            .done(function () {
+                window.location.href = "profile.html";
+            })
             .fail(function () {
                 alert('Failed to Login! Invalid Credentials!');
             });
@@ -69,6 +72,9 @@ window.onload = function () {
                 fname: $('input[name=fname]').val(),
                 lname: $('input[name=lname]').val(),
                 email: $('input[name=email]').val()
+            })
+            .done(function () {
+                window.location.href = "profile.html";
             })
             .fail(function () {
                 alert('Failed to Login! Invalid Credentials!');

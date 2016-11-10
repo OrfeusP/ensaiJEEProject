@@ -33,8 +33,8 @@ public class ServletServer {
 							servlet("subscribeServlet",SubscribeServlet.class).addMapping("/SubscribeServlet"),
 							servlet("rinterpreterServlet", RinterpretationServlet.class).addMapping("/RinterpretationServlet"),
 							servlet("loginServlet",LoginServlet.class).addMapping("/LoginServlet"),
-							servlet("loadRprogramServlet",LoadRprogamServlet.class).addMapping("/LoadRprogramServlet"),
-
+							servlet("loadRprogamServlet",LoadRprogamServlet.class).addMapping("/LoadRprogamServlet"),
+							servlet("loadToEditServlet",LoadToEditServlet.class).addMapping("/LoadToEditServlet/*"),
 					 JspServletBuilder.createServlet("Default Jsp Servlet", "*.jsp")
 
 			);
