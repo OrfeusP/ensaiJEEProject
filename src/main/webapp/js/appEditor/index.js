@@ -76,8 +76,9 @@ window.onload = function () {
                 filename: $('input[name=programName]').val(),
                 Rprogram:editor.getValue()
             })
-        .done(function () {
-            window.location.href = "profile.html";
+        .done(function (data) {
+            var id = data.id;
+            window.location.href = "results.html?id="+id;
         })
         .fail(function () {
             alert('Failed to Login! Invalid Credentials!');

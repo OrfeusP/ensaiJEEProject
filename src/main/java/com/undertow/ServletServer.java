@@ -35,6 +35,7 @@ public class ServletServer {
 							servlet("loginServlet",LoginServlet.class).addMapping("/LoginServlet"),
 							servlet("loadRprogamServlet",LoadRprogamServlet.class).addMapping("/LoadRprogamServlet"),
 							servlet("loadToEditServlet",LoadToEditServlet.class).addMapping("/LoadToEditServlet/*"),
+							servlet("displayResultServlet",DisplayResultServlet.class).addMapping("/DisplayResultServlet/*"),
 					 JspServletBuilder.createServlet("Default Jsp Servlet", "*.jsp")
 
 			);

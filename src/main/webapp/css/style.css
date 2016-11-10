@@ -371,3 +371,13 @@ textarea {
 .appEditor > h1 {
     margin-bottom: 0;
 }
+
+#program-results {
+    height: 350px;
+    overflow: auto;
+    color: #7FFF00;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #1ab188;
+}

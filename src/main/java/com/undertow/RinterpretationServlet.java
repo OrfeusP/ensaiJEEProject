@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * Created by opheusp on 11/10/16.
@@ -31,7 +32,12 @@ public class RinterpretationServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = "";
 
-        response.setContentType("text/html");
+        JSONObject program = new JSONObject();
+
+
+
+
+        response.setContentType("application/json");
 
         System.out.println(request.getRequestURI());
         // Redirect standard output
@@ -60,12 +66,14 @@ public class RinterpretationServlet extends HttpServlet {
                 }
             }
 
+            RProgram p;
             String id_param = request.getParameter("id");
 
 
             if(id_param != null){
 
                 int id = Integer.parseInt(id_param);
+                p = EntityManagerHelper.findProgramOfUser(id);
                 EntityManagerHelper.updateFilename(id,request.getParameter("filename"));
                 EntityManagerHelper.updateProgramcode(id,request.getParameter("Rprogram"));
                 EntityManagerHelper.updateProgramresult(id,buffer.toString());
@@ -74,7 +82,7 @@ public class RinterpretationServlet extends HttpServlet {
             }
             else{
 
-                RProgram p = new RProgram();
+                p = new RProgram();
                 System.out.println(userName);
                 p.setAuthor(userName);
                 p.setName(request.getParameter("filename"));
@@ -83,6 +91,11 @@ public class RinterpretationServlet extends HttpServlet {
                 p.updateTimeStamps();
                 EntityManagerHelper.addRprogram(p);
             }
+
+            program.put("id",p.getId());
+            PrintWriter out = response.getWriter();
+            out.println(program);
+
         }catch (NoResultException e) {
             System.out.println("No program in the DB with this name");
         }catch (Exception e){

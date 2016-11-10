@@ -66,10 +66,9 @@ window.onload = function () {
             }
         });
         console.log(status);
+
     })
-        .fail(function (error) {
-            alert(error);
-        });
+
     $('.create-button').click(function (e) {
         window.location.href = "appEditor.html"
 
